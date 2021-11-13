@@ -8,46 +8,46 @@ public class Quicksort {
 		array[i] = array[j];
 		array[j] = tmp;
 	}
-	
-	public static int partition(int[] arr, int left, int right) {
-		int pivot = arr[left + (right - left) / 2]; // Pick a pivot point. Can be an element		
+
+	public static int partition(int[] array, int leftIndex, int rightIndex) {
+		int pivot = array[leftIndex + (rightIndex - leftIndex) / 2]; // Pick a pivot point. Can be an element		
 		
-		while (left <= right) { // Until we've gone through the whole array
+		while (leftIndex <= rightIndex) { // Until we've gone through the whole array
 			// Find element on left that should be on right
-			while (arr[left] < pivot) { 
-				left++;
+			while (array[leftIndex] < pivot) { 
+				leftIndex++;
 			}
 			
 			// Find element on right that should be on left
-			while (arr[right] > pivot) {
-				right--;
+			while (array[rightIndex] > pivot) {
+				rightIndex--;
 			}
 			
 			// Swap elements, and move left and right indices
-			if (left <= right) {
-				swap(arr, left, right);
-				left++;
-				right--;
+			if (leftIndex <= rightIndex) {
+				swap(array, leftIndex, rightIndex);
+				leftIndex++;
+				rightIndex--;
 			}
 		}
-		return left; 
+		return leftIndex; 
 	}
-	
-	public static void quickSort(int[] arr, int left, int right) {
-		int index = partition(arr, left, right); 
-		if (left < index - 1) { // Sort left half
-			quickSort(arr, left, index - 1);
+
+	public static void quickSort(int[] array, int leftIndex, int rightIndex) {
+		int index = partition(array, leftIndex, rightIndex); 
+		if (leftIndex < index - 1) { // Sort left half
+			quickSort(array, leftIndex, index - 1);
 		}
-		if (index < right) { // Sort right half
-			quickSort(arr, index, right);
+		if (index < rightIndex) { // Sort right half
+			quickSort(array, index, rightIndex);
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		int[] arr = AssortedMethods.randomArray(20, 0, 6);
-		AssortedMethods.printIntArray(arr);	
-		quickSort(arr, 0, arr.length - 1);
-		AssortedMethods.printIntArray(arr);
+		int[] array = AssortedMethods.randomArray(20, 0, 6);
+		AssortedMethods.printIntArray(array);	
+		quickSort(array, 0, array.length - 1);
+		AssortedMethods.printIntArray(array);
 	}
 
 }
